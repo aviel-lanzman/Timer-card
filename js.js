@@ -6,7 +6,10 @@ var imgsd = document.querySelector("div8");
 var imgsl = document.querySelector("div6");
 var imgsr = document.querySelector("div4");
 var div = document.querySelector("div");
-var div10 = document.querySelector("div10");
+// If the display style of the lds-ring class is toggled between none/display,
+// then the spinner shows
+//var div10 = document.querySelector("div10");
+//document.querySelector(".lds-ring").style.display = "none";
 var div5 = document.querySelector("div5");
 var deadTime = document.querySelector("div2");
 var deadTimeSeconds = -1;
@@ -22,6 +25,7 @@ var hasBeenClickedPause = false;
 var Seconds = document.querySelector("#Seconds");
 var Minutes = document.querySelector("#Minutes");
 // var div10 = (document.querySelector("div10").style.display = "none");
+//div10Spinner.display = "none";
 
 //מתחיל סיבוב צבעים בכפתור ההתחלה
 backGroundColors(buttonStart, "rgb(63 255 0)", "rgb(255 5 5)");
@@ -68,12 +72,15 @@ async function imgsRight() {
 async function imgAll() {
   var res = await fetch("https://aws.random.cat/meow");
   var json = await res.json();
+  console.log("changing inner HTML");
   div.innerHTML = '<img id= "all" src="' + json.file + '">';
 }
 //עד כאן פונקציות לייבוא חתולים
 
 //התוכנית הראשית:
 buttonStart.addEventListener("click", () => {
+  //document.querySelector(".lds-ring").style.display = "none";
+
   //אם הכפתור לא לחוץ אז תבצע את הפונקציה
   if (!hasBeenClicked) {
     if (hasBeenClickedPause === false) {
@@ -125,12 +132,15 @@ buttonStart.addEventListener("click", () => {
           Seconds = 59; //תוחליף את השניות מ0 ל59
         }
       } else {
+        time.innerText = " ";
+        time.style.display = "none";
+        document.querySelector(".lds-ring").style.display = "inline-block";
         clearInterval(numberIDinterval1);
         clearInterval(numberIDinterval2);
         clearInterval(numberIDinterval3);
         audio.play();
-        // div10.style.display = "inline";
         imgAll();
+        //document.querySelector(".lds-ring").style.display = "none";
       }
       if (deadTimeSeconds < 10) {
         deadTime.innerText =
@@ -149,6 +159,9 @@ buttonStart.addEventListener("click", () => {
         time.innerText = Minutes + ":" + Seconds;
       }
     }, 1000);
+
+    //document.querySelector(".lds-ring").style.display = "inline-block";
+    //imgAll();
 
     buttonStop.addEventListener("click", function (event) {
       hasBeenClicked = false;
