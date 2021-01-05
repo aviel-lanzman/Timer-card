@@ -1,0 +1,127 @@
+input {
+  border-radius: 100%;
+  display: grid;
+  padding: 35px 0px;
+  text-align: center;
+  font-family: unset;
+}
+div {
+  border: 2px solid red;
+  font-family: "Brush Script MT", cursive;
+  align-items: center;
+  justify-content: center;
+  background-color: teal;
+  text-align: -webkit-center;
+  display: grid;
+  grid-gap: 4px;
+  grid-template-areas:
+    "div1 div2 div3"
+    "div4 div5 div6"
+    "div7 div8 div9";
+}
+#start {
+  font-family: "Brush Script MT", cursive;
+  border-radius: 100%;
+  padding: 30px 16px;
+  margin: 10px;
+  background: linear-gradient(rgb(63 255 0), rgb(255 5 5));
+}
+#stop {
+  font-family: "Brush Script MT", cursive;
+  border-radius: 100%;
+  padding: 30px 16px;
+  margin: 10px;
+  background: linear-gradient(rgb(255 5 5), rgb(63 255 0));
+}
+#Pause {
+  font-family: "Brush Script MT", cursive;
+  border-radius: 100%;
+  padding: 30px 16px;
+  margin: 10px;
+  background: darkkhaki;
+}
+div5 {
+  justify-content: center;
+  border-radius: 50%;
+  line-height: 2;
+  background: linear-gradient(rgb(63 255 0), rgb(255 5 5));
+  font-size: xxx-large;
+  border-top-left-radius: 22px 20px;
+  border-top-right-radius: 22px 20px;
+}
+div2 {
+  justify-self: center;
+  background-color: whitesmoke;
+  border-radius: 25%;
+}
+img {
+  width: 75px;
+  height: 75px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 30%;
+}
+div img#all {
+  justify-content: center;
+  width: 450px;
+  height: 450px;
+}
+button {
+  color: whitesmoke;
+}
+button:hover {
+  color: rgb(0, 0, 0);
+}
+@media only screen and (max-width: 300px) {
+  div10 {
+    grid-template-columns: fr1;
+    grid-template-rows: fr1 fr1 fr1 fr1 fr1 fr1 fr1 fr1 fr1;
+    grid-template-areas:
+      "div1"
+      "div2"
+      "div3"
+      "div4"
+      "div5"
+      "div6"
+      "div7"
+      "div8"
+      "div9";
+  }
+}
+
+.lds-ring {
+  display: inline-block;
+  display: none;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
