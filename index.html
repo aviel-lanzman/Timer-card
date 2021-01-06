@@ -7,8 +7,7 @@
     <title>Document</title>
   </head>
   <body>
-
-    <div>
+    <div class="div-background">
       <div1
         ><label for="Minutes"
           >Minutes<input type="number" name="Minutes" id="Minutes" /></label
@@ -22,6 +21,16 @@
       <div4></div4>
       <div5>
         <time></time>
+        <!-- don't set the display style of div10 to none here,
+      instead set the display style of the lds-ring class to none (in the .js)
+          <div10 style="display: none;">
+          -->
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div5>
       <div6></div6>
       <div7>
@@ -32,9 +41,9 @@
         <button id="stop">Stop Countdown</button>
       </div9>
     </div>
-    <div10 style="display: none;">
-      <div class="lds-ring"><div></div><div></div><div></div><div></div>
-    </div10>
+    <!-- div10 the spinner moved up in the page to the div 5 area
+      'coz here it was hiding down below in the left corner'-->
+
     <script src="js.js"></script>
   </body>
 </html>
