@@ -9,7 +9,8 @@ var div = document.querySelector("div");
 // If the display style of the lds-ring class is toggled between none/display,
 // then the spinner shows
 //var div10 = document.querySelector("div10");
-//document.querySelector(".lds-ring").style.display = "none";
+// var img = document.querySelector("img");
+
 var div5 = document.querySelector("div5");
 var deadTime = document.querySelector("div2");
 var deadTimeSeconds = -1;
@@ -73,7 +74,14 @@ async function imgAll() {
   var res = await fetch("https://aws.random.cat/meow");
   var json = await res.json();
   console.log("changing inner HTML");
-  div.innerHTML = '<img id= "all" src="' + json.file + '">';
+  var img = document.createElement("img");
+  img.id = "all";
+  img.src = json.file;
+  img.onload = function load() {
+    div.innerText = "";
+    audio.play();
+    div.appendChild(img);
+  };
 }
 //עד כאן פונקציות לייבוא חתולים
 
@@ -138,7 +146,6 @@ buttonStart.addEventListener("click", () => {
         clearInterval(numberIDinterval1);
         clearInterval(numberIDinterval2);
         clearInterval(numberIDinterval3);
-        audio.play();
         imgAll();
         //document.querySelector(".lds-ring").style.display = "none";
       }

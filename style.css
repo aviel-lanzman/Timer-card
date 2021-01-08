@@ -78,8 +78,8 @@ button {
 button:hover {
   color: rgb(0, 0, 0);
 }
-@media only screen and (max-width: 300px) {
-  div10 {
+@media only screen and (max-width: 400px) {
+  div {
     grid-template-columns: fr1;
     grid-template-rows: fr1 fr1 fr1 fr1 fr1 fr1 fr1 fr1 fr1;
     grid-template-areas:
