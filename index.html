@@ -1,50 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="div-background">
-      <!-- <img id="all" src="" alt="" style="display: none" /> -->
-      <div1
-        ><label for="Minutes"
-          >Minutes<input type="number" name="Minutes" id="Minutes" /></label
-      ></div1>
-      <div2></div2>
-      <div3
-        ><label for="Seconds"
-          >Seconds<input type="number" name="Seconds" id="Seconds" /></label
-      ></div3>
 
-      <div4></div4>
-      <div5>
-        <time></time>
-        <!-- don't set the display style of div10 to none here,
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app-background">
+    <!-- <img id="all" src="" alt="" style="display: none" /> -->
+    <div1><label for="Minutes">Minutes<input type="number" name="Minutes" id="Minutes" /></label></div1>
+    <div2></div2>
+    <div3><label for="Seconds">Seconds<input type="number" name="Seconds" id="Seconds" /></label></div3>
+
+    <div id="imageRight"></div>
+    <div id="borderTime">
+      <time></time>
+      <!-- don't set the display style of div10 to none here,
       instead set the display style of the lds-ring class to none (in the .js)
           <div10 style="display: none;">
           -->
-        <div class="lds-ring">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div5>
-      <div6></div6>
-      <div7>
-        <button id="start">Start Countdown</button>
-      </div7>
-      <div8><button id="Pause">Pause Countdown</button></div8>
-      <div9>
-        <button id="stop">Stop Countdown</button>
-      </div9>
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
-    <!-- div10 the spinner moved up in the page to the div 5 area
+    <div id="imageLeft"></div>
+    <div7>
+      <button id="start">Start Countdown</button>
+    </div7>
+    <div8><button id="Pause">Pause Countdown</button></div8>
+    <div9>
+      <button id="stop">Stop Countdown</button>
+    </div9>
+  </div>
+  <!-- div10 the spinner moved up in the page to the div 5 area
       'coz here it was hiding down below in the left corner'-->
 
-    <script src="js.js"></script>
-  </body>
+  <script src="js.js"></script>
+</body>
+
 </html>
