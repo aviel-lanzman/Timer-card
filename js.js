@@ -17,9 +17,7 @@ var numberIDinterval1;
 var numberIDinterval2;
 var numberIDinterval3;
 var hasBeenClicked = false;
-var audio = new Audio(
-  "https://previews.customer.envatousercontent.com/files/171129668/preview.mp3",
-);
+
 var hasBeenClickedPause = false;
 
 //מתחיל סיבוב צבעים בכפתור ההתחלה
@@ -61,7 +59,6 @@ const appendImageToChild = async (element) => {
 };
 
 async function imgAll() {
-  console.log("changing inner HTML");
   var img = document.createElement("img");
   img.id = "all";
   img.src = await fetchRandomImage();
@@ -69,6 +66,9 @@ async function imgAll() {
     const appBackground = document.getElementById("app-background");
     appBackground.style.gridTemplateAreas = "none";
     div.innerText = "";
+    const audio = new Audio(
+      "https://previews.customer.envatousercontent.com/files/171129668/preview.mp3",
+    );
     audio.play();
     div.appendChild(img);
   };
@@ -100,7 +100,6 @@ buttonStart.addEventListener("click", () => {
     backGroundColors(buttonStop, "rgb(255 5 5)", "rgb(63 255 0)"); //מריץ צבעים מסתובבים בכפתור הסטופ
 
     numberIDinterval1 = setInterval(() => {
-      console.log(numberIDinterval1);
       var color1 = getRandomColor();
       var color2 = getRandomColor();
       var color3 = getRandomColor();
@@ -171,7 +170,6 @@ buttonStart.addEventListener("click", () => {
       backGroundColors(buttonStart, "rgb(63 255 0)", "rgb(255 5 5)");
     });
     buttonPause.addEventListener("click", function (event) {
-      console.log("1234567");
       hasBeenClicked = false;
       hasBeenClickedPause = true;
       clearInterval(numberIDinterval1);
