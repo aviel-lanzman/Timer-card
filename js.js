@@ -2,16 +2,14 @@ var time = document.querySelector("time");
 var buttonStart = document.querySelector("#start");
 var buttonStop = document.querySelector("#stop");
 var buttonPause = document.querySelector("#Pause");
-var imgsd = document.querySelector("div8");
-var imgsl = document.querySelector("div6");
-var imgsr = document.querySelector("div4");
+var imageLeft = document.getElementById("imageLeft");
+var imageRight = document.getElementById("imageRight");
 var div = document.querySelector("div");
 // If the display style of the lds-ring class is toggled between none/display,
 // then the spinner shows
-//var div10 = document.querySelector("div10");
 // var img = document.querySelector("img");
 
-var div5 = document.querySelector("div5");
+var borderTime = document.getElementById("borderTime");
 var deadTime = document.querySelector("div2");
 var deadTimeSeconds = -1;
 var deadTimeMinutes = 0;
@@ -20,13 +18,9 @@ var numberIDinterval2;
 var numberIDinterval3;
 var hasBeenClicked = false;
 var audio = new Audio(
-  "https://previews.customer.envatousercontent.com/files/171129668/preview.mp3"
+  "https://previews.customer.envatousercontent.com/files/171129668/preview.mp3",
 );
 var hasBeenClickedPause = false;
-var Seconds = document.querySelector("#Seconds");
-var Minutes = document.querySelector("#Minutes");
-// var div10 = (document.querySelector("div10").style.display = "none");
-//div10Spinner.display = "none";
 
 //מתחיל סיבוב צבעים בכפתור ההתחלה
 backGroundColors(buttonStart, "rgb(63 255 0)", "rgb(255 5 5)");
@@ -54,41 +48,35 @@ function getRandomColor() {
   return color;
 }
 
-//פונקציות לייבוא תמונות חתולים
-async function imgsLeft() {
-  var res = await fetch("https://aws.random.cat/meow");
-  var json = await res.json();
-  imgsl.innerHTML = '<img src="' + json.file + '">';
-}
-async function imgsDown() {
-  var res = await fetch("https://aws.random.cat/meow");
-  var json = await res.json();
-  imgsd.innerHTML = '<img src="' + json.file + '">';
-}
-async function imgsRight() {
-  var res = await fetch("https://aws.random.cat/meow");
-  var json = await res.json();
-  imgsr.innerHTML = '<img src="' + json.file + '">';
-}
+const fetchRandomImage = async () => {
+  const catRandomUrl = "https://api.thecatapi.com/v1/images/search";
+  var res = await fetch(catRandomUrl);
+  const json = await res.json();
+  return json[0].url;
+};
+
+const appendImageToChild = async (element) => {
+  const url = await fetchRandomImage();
+  element.innerHTML = `<img src="${url}">`;
+};
+
 async function imgAll() {
-  var res = await fetch("https://aws.random.cat/meow");
-  var json = await res.json();
   console.log("changing inner HTML");
   var img = document.createElement("img");
   img.id = "all";
-  img.src = json.file;
+  img.src = await fetchRandomImage();
   img.onload = function load() {
+    const appBackground = document.getElementById("app-background");
+    appBackground.style.gridTemplateAreas = "none";
     div.innerText = "";
     audio.play();
     div.appendChild(img);
   };
 }
-//עד כאן פונקציות לייבוא חתולים
 
-//התוכנית הראשית:
 buttonStart.addEventListener("click", () => {
-  //document.querySelector(".lds-ring").style.display = "none";
-
+  let Seconds = document.getElementById("Seconds");
+  let Minutes = document.getElementById("Minutes");
   //אם הכפתור לא לחוץ אז תבצע את הפונקציה
   if (!hasBeenClicked) {
     if (hasBeenClickedPause === false) {
@@ -107,7 +95,7 @@ buttonStart.addEventListener("click", () => {
     }
 
     clearInterval(numberIDinterval2); //מנקה את הריצה של הכפתור שמתחיל את התוכנית
-    backGroundColors(div5, "rgb(255 242 12)", " rgb(58 236 0)"); //מריץ צבעים מסתובבים בהצגת הזמן
+    backGroundColors(borderTime, "rgb(255 242 12)", " rgb(58 236 0)"); //מריץ צבעים מסתובבים בהצגת הזמן
     numberIDinterval3 = numberIDinterval2; //שומר את מספר הזהות של האינטרוול שאחראי על הצבעים של השעון
     backGroundColors(buttonStop, "rgb(255 5 5)", "rgb(63 255 0)"); //מריץ צבעים מסתובבים בכפתור הסטופ
 
@@ -122,8 +110,8 @@ buttonStart.addEventListener("click", () => {
         //מעלה כל 7 דקות תמונת חתולים רנדומלית
 
         // imgsDown();
-        imgsLeft();
-        imgsRight();
+        appendImageToChild(imageLeft);
+        appendImageToChild(imageRight);
       }
 
       if (Minutes !== 0 || Seconds !== 0) {
@@ -151,12 +139,12 @@ buttonStart.addEventListener("click", () => {
       }
       if (deadTimeSeconds < 10) {
         deadTime.innerText =
-          "the past time:" + deadTimeMinutes + ":0" + deadTimeSeconds;
+          "past time:" + deadTimeMinutes + ":0" + deadTimeSeconds;
         deadTime.style.width = "90px";
         deadTime.style.height = "44px";
       } else {
         deadTime.innerText =
-          "the past time:" + deadTimeMinutes + ":" + deadTimeSeconds;
+          "past time:" + deadTimeMinutes + ":" + deadTimeSeconds;
         deadTime.style.width = "90px";
         deadTime.style.height = "44px";
       }

@@ -1,3 +1,6 @@
+body{
+  height: 98vh;
+}
 input {
   border-radius: 100%;
   display: grid;
@@ -14,11 +17,12 @@ div {
   grid-gap: 4px;
   grid-template-areas:
     "div1 div2 div3"
-    "div4 div5 div6"
+    "imageRight borderTime imageLeft"
     "div7 div8 div9";
 }
 
-.div-background {
+#app-background {
+  height: 100%;
   border: 2px solid red;
   background-color: teal;
 }
@@ -44,7 +48,7 @@ div {
   margin: 10px;
   background: darkkhaki;
 }
-div5 {
+#borderTime {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -86,9 +90,9 @@ button:hover {
       "div1"
       "div2"
       "div3"
-      "div4"
-      "div5"
-      "div6"
+      "imageRight"
+      "borderTime"
+      "imageLeft"
       "div7"
       "div8"
       "div9";
